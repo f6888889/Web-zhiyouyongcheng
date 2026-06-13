@@ -1,0 +1,16 @@
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+package-lock.json
+.git
+.gitignore
+*.md
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+dist/
+build/
+vite.config.ts.timestamp-*

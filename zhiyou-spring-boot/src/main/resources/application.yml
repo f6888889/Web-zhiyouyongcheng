@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: zhiyou-spring-boot
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+  data:
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: Asia/Shanghai
+
+app:
+  data-path: /app/data/
+
+logging:
+  level:
+    com.zhiyou: debug

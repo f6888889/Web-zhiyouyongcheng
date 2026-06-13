@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  zhiyou-backend:
+    build:
+      context: ./zhiyou-spring-boot
+      dockerfile: Dockerfile
+    container_name: zhiyou-backend
+    ports:
+      - "8089:8080"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    networks:
+      - zhiyou-network
+    environment:
+      - TZ=Asia/Shanghai
+
+  zhiyou-frontend:
+    build:
+      context: ./zhiyou-vue
+      dockerfile: Dockerfile
+    container_name: zhiyou-frontend
+    ports:
+      - "89:80"
+    depends_on:
+      - zhiyou-backend
+    restart: unless-stopped
+    networks:
+      - zhiyou-network
+
+networks:
+  zhiyou-network:
+    driver: bridge
