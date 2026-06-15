@@ -6,8 +6,10 @@ services:
       context: ./zhiyou-spring-boot
       dockerfile: Dockerfile
     container_name: zhiyou-backend
-    ports:
-      - "8004:8004"
+    # 生产环境下，后端不需要暴露端口给公网，通过 Docker 内网供前端 Nginx 反向代理访问即可，更安全
+    # 如果你依然需要在公网直接调用后端 API，可以取消注释下面的 ports
+    # ports:
+    #   - "8004:8004"
     volumes:
       - ./data:/app/data
     environment:
@@ -23,7 +25,7 @@ services:
       dockerfile: Dockerfile
     container_name: zhiyou-frontend
     ports:
-      - "8005:8005"
+      - "8005:8005" # 将阿里云服务器的公网 8005 端口映射到容器内部 Nginx 监听的 8005 端口
     depends_on:
       - zhiyou-backend
     restart: unless-stopped
